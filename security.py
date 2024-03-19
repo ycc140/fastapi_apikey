@@ -7,22 +7,20 @@ VERSION INFO::
 
     $Repo: fastapi_apikey
   $Author: Anders Wiklund
-    $Date: 2024-03-19 14:47:37
-     $Rev: 1
+    $Date: 2024-03-19 17:28:01
+     $Rev: 2
 """
 
-# BUILTIN modules
-from os import getenv
-
 # Third party modules
+from dotenv import dotenv_values
 from fastapi.security import APIKeyHeader
 from fastapi import HTTPException, Security, status
 
 # Constants
-API_KEY = getenv("SERVICE_API_KEY")
-""" API-key environment value. """
 API_KEY_HEADER = APIKeyHeader(name="X-API-Key")
 """ Using API key authentication. """
+API_KEY = dotenv_values(".env")["SERVICE_API_KEY"]
+""" API-key environment value. """
 
 
 # ---------------------------------------------------------
